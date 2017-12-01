@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import os
 import platform
 import errno
@@ -20,11 +21,17 @@ def installFedy():
 
 def systemTools():
     os.system("dnf install -y samba-common eiciel zsh easytag gimp pavucontrol \
-    quadrapassel gnome-2048 trasnmission deja-dup tilix filezilla dconf-editor \
+    quadrapassel gnome-2048 transmission deja-dup tilix dconf-editor \
     remmina util-linux-user")
 
 
 def setZshForUser():
-    setZsh = raw_input("Would you like to set Zsh as your default shell?: ")
-    if setZsh == "Y" or "y":
-        os.system("chsh -s /usr/bin/zsh %s" % uid)
+    os.system("chsh -s /usr/bin/zsh %s" % user)
+
+def installPapirus():
+    os.system('wget -qO- https://raw.githubusercontent.com/PapirusDevelopmentTeam/papirus-icon-theme/master/install-papirus-root.sh | sh')
+
+def dconfNautilus():
+
+
+def dconfOther():
