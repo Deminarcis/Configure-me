@@ -20,13 +20,8 @@ def installFedy():
 
 
 def systemTools():
-<<<<<<< Updated upstream
     os.system("dnf install -y samba-common eiciel zsh easytag gimp pavucontrol \
     quadrapassel gnome-2048 transmission deja-dup tilix dconf-editor \
-=======
-    os.system("dnf install -y libsmbclient eiciel zsh easytag gimp pavucontrol \
-    quadrapassel gnome-2048 transmission deja-dup tilix filezilla dconf-editor \
->>>>>>> Stashed changes
     remmina util-linux-user")
 
 
