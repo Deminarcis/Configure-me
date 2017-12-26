@@ -22,7 +22,7 @@ def installFedy():
 def systemTools():
     os.system("dnf install -y samba-common eiciel zsh easytag gimp pavucontrol \
     quadrapassel gnome-2048 transmission deja-dup tilix dconf-editor \
-    remmina util-linux-user git")
+    remmina util-linux-user git kernel-tools")
 
 
 def setZshForUser():
