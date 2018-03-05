@@ -1,14 +1,17 @@
 #!/usr/bin/env python3
 import os
-import platform
-import errno
-import sys
 
 user = os.getlogin()
 uid = os.getuid()
 
 if os.getuid() != 0:
-    exit("This script contains commands that must be run as root, please restart using sudo or run this script as root")
+    exit("This script contains commands that must be run as root, please restart using sudo")
+
+
+def disclaimer():
+    print("This script will now set up your PC.")
+    print("The intended use is to set up one user but can be used for multiple users as the tool sets up some things system wide")
+    print("we will be setting up %s" % user)
 
 
 def updates():
@@ -20,21 +23,45 @@ def installFedy():
 
 
 def systemTools():
-    os.system("dnf install -y samba-common eiciel zsh easytag gimp pavucontrol \
+    os.system("dnf install -y samba-common eiciel zsh gimp pavucontrol \
     quadrapassel gnome-2048 transmission deja-dup tilix dconf-editor \
-    remmina util-linux-user git kernel-tools")
+    remmina util-linux-user git kernel-tools gimp-resynthesizer arc-theme-solid \
+    clamtk filezilla gnome-mpv gparted meld solaar virt-manager gnome-tweak-tool")
 
 
 def setZshForUser():
     os.system("chsh -s /usr/bin/zsh %s" % user)
 
+
 def installPapirus():
     os.system('wget -qO- https://raw.githubusercontent.com/PapirusDevelopmentTeam/papirus-icon-theme/master/install-papirus-root.sh | sh')
 
-def dconfNautilus():
-
-
-def dconfOther():
 
 def syncFromGit():
+    os.system("mkdir -p git && cd git")
     os.system("git clone https://github.com/Deminarcis/Admin-Scripts.git")
+
+def syncDotfiles():
+    os.system("mkdir -p git && cd git")
+    os.system("git clone https://github.com/Deminarcis/<make a dotfiles repo>")
+
+
+def installMinwaita():
+    os.system("wget <insert URL for Minwaita theme> -x -P "/home/%s/.themes/Minwaita"" % user )
+    os.system("tar -xzvf "*Minwaita*"")
+
+disclaimer()
+print("Returning to %s's home" % user)
+os.system("cd /home/%s" % user)
+print("Checking for updates before we start")
+updates()
+print("Installing extras & scripts")
+installFedy()
+syncFromGit()
+print("Checking for stragglers (Updating again) and installing system tools")
+updates()
+systemTools()
+print("Installing Papirus Icon Set")
+installPapirus()
+print("Setting up environment")
+setZshForUser()
