@@ -26,7 +26,8 @@ def systemTools():
     os.system("dnf install -y samba-common eiciel zsh gimp pavucontrol \
     quadrapassel gnome-2048 transmission deja-dup tilix dconf-editor \
     remmina util-linux-user git kernel-tools gimp-resynthesizer arc-theme-solid \
-    clamtk filezilla gnome-mpv gparted meld solaar virt-manager gnome-tweak-tool")
+    clamtk filezilla gnome-mpv gparted meld solaar virt-manager gnome-tweak-tool \
+    PackageKit-command-not-found")
 
 
 def setZshForUser():
