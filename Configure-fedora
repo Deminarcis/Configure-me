@@ -28,7 +28,8 @@ def systemTools():
     remmina util-linux-user git kernel-tools gimp-resynthesizer arc-theme-solid \
     clamtk filezilla gnome-mpv gparted meld solaar virt-manager gnome-tweak-tool \
     PackageKit-command-not-found")
-
+def add-flatpaks():
+    os.system("")
 
 def setZshForUser():
     os.system("chsh -s /usr/bin/zsh %s" % user)
@@ -42,14 +43,11 @@ def syncFromGit():
     os.system("mkdir -p git && cd git")
     os.system("git clone https://github.com/Deminarcis/Admin-Scripts.git")
 
+
 def syncDotfiles():
     os.system("mkdir -p git && cd git")
     os.system("git clone https://github.com/Deminarcis/<make a dotfiles repo>")
 
-
-def installMinwaita():
-    os.system("wget <insert URL for Minwaita theme> -x -P "/home/%s/.themes/Minwaita"" % user )
-    os.system("tar -xzvf "*Minwaita*"")
 
 disclaimer()
 print("Returning to %s's home" % user)
