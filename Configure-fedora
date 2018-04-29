@@ -21,17 +21,26 @@ def updates():
 def installFedy():
     os.system("sudo sh -c 'curl https://www.folkswithhats.org/installer | bash'")
 
+def addVBox():
+    os.system("curl https://download.virtualbox.org/virtualbox/rpm/fedora/virtualbox.repo -o ~/virtualbox.repo")
+    os.system("sudo mv ~/virtualbox.repo /etc/yum.repos.d/")
+
+
+def installVbox():
+    os.system("dnf install VirtualBox-5.2")
+
 
 def systemTools():
     os.system("dnf install -y samba-common eiciel zsh gimp pavucontrol \
     quadrapassel gnome-2048 transmission deja-dup tilix dconf-editor \
     remmina util-linux-user git kernel-tools gimp-resynthesizer arc-theme-solid \
     clamtk filezilla gnome-mpv gparted meld solaar virt-manager gnome-tweak-tool \
-    PackageKit-command-not-found")
+    PackageKit-command-not-found fedora-workstation-repositories paprefs")
 
-    
-def add-flatpaks():
+
+def addFlatpaks():
     os.system("")
+
 
 def setZshForUser():
     os.system("chsh -s /usr/bin/zsh %s" % user)
