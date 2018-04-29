@@ -21,13 +21,36 @@ def updates():
 def installFedy():
     os.system("sudo sh -c 'curl https://www.folkswithhats.org/installer | bash'")
 
+
 def addVBox():
     os.system("curl https://download.virtualbox.org/virtualbox/rpm/fedora/virtualbox.repo -o ~/virtualbox.repo")
     os.system("sudo mv ~/virtualbox.repo /etc/yum.repos.d/")
 
 
 def installVbox():
-    os.system("dnf install VirtualBox-5.2")
+    os.system("dnf install VirtualBox-5.2 -y")
+
+
+def addAtom():
+    os.system("sudo rpm --import https://packagecloud.io/AtomEditor/atom/gpgkey")
+    atomrepo = '''
+    [Atom]
+    name=Atom Editor
+    baseurl=https://packagecloud.io/AtomEditor/atom/el/7/\$basearch
+    enabled=1
+    gpgcheck=0
+    repo_gpgcheck=1
+    gpgkey="https://packagecloud.io/AtomEditor/atom/gpgkey"
+    '''
+    os.system('touch atom.repo')
+    file = open('atom.repo', 'a')
+    file.write(atomrepo)
+    file.close()
+    os.system("sudo mv atom.repo /etc/yum.repos.d/")
+
+def installAtom():
+    os.system('sudo dnf install atom -y')
+
 
 
 def systemTools():
@@ -66,6 +89,9 @@ os.system("cd /home/%s" % user)
 print("Checking for updates before we start")
 updates()
 print("Installing extras & scripts")
+os.system("cd /home/%s" % user)
+addVBox()
+addAtom()
 installFedy()
 syncFromGit()
 print("Checking for stragglers (Updating again) and installing system tools")
